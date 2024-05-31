@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Vite + TS</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1>QBank</h1>
+
+      <nav>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/about">Acerca de</a></li>
+          <li><a href="/contact">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="app">
+      <div class="container">
+        <img src="/queue-draw.svg" alt="Cola" />
+        <div class="container__card">
+          <div class="container__card-qbank">
+            <h2>QBank</h2>
+            <p>Bienvenido a QBank</p>
+          </div>
+          <div class="container__card-turno">
+            <p id="turno"></p>
+            <p id="caja"></p>
+            <p id="tiempo"></p>
+          </div>
+          <button id="btn" class="btn">Generar turno virtual</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
