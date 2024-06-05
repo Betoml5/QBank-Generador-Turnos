@@ -1,12 +1,12 @@
 import connection from "./connection";
 import { Turno } from "./types";
+import { getTimeMessage } from "./utils/time";
 const button = document.getElementById("btn");
 const $pTurno = document.querySelector("#turno");
-const $pCaja = document.querySelector("#caja");
 const $tiempoEspera = document.querySelector("#tiempo");
 
 button?.addEventListener("click", async () => {
-  if ($pTurno && $pCaja) {
+  if ($pTurno) {
     try {
       $pTurno.textContent = "Cargando...";
       await connection.invoke("AddToQueue");
@@ -17,9 +17,11 @@ button?.addEventListener("click", async () => {
 });
 
 connection.on("AddToQueue", (turno: Turno) => {
-  if ($pTurno && $pCaja && $tiempoEspera) {
+  console.log(turno);
+  if ($pTurno && $tiempoEspera) {
     $pTurno.textContent = `Turno: ${turno.codigoTurno}`;
-    $pCaja.textContent = `Caja: ${turno.caja}`;
-    $tiempoEspera.textContent = `Tiempo de espera: ${turno.tiempoEspera} minutos`;
+    $tiempoEspera.textContent = `Tiempo de espera: ${getTimeMessage(
+      turno.tiempoEspera
+    )} `;
   }
 });
