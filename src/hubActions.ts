@@ -16,6 +16,38 @@ button?.addEventListener("click", async () => {
   }
 });
 
+connection.on("GetBankStatus", (status: number) => {
+  if (status === 0) {
+    if ($pTurno && $tiempoEspera) {
+      $pTurno.textContent = "El banco está cerrado. Te esperamos mañana :)";
+      $tiempoEspera.textContent = "";
+    }
+    if (button) {
+      button.textContent = "El banco está cerrado";
+      button?.setAttribute("disabled", "true");
+    }
+  }
+});
+connection.on("SetBankStatus", (status: number) => {
+  console.log("El nuevo estatus del banco es: ", status);
+  if (status === 0) {
+    if ($pTurno && $tiempoEspera) {
+      $pTurno.textContent = "El banco está cerrado. Te esperamos mañana :)";
+      $tiempoEspera.textContent = "";
+    }
+    if (button) {
+      button.textContent = "El banco está cerrado";
+      button?.setAttribute("disabled", "true");
+    }
+  } else {
+    if (button && $pTurno) {
+      $pTurno.textContent = "";
+      button.textContent = "Generar turno virutal";
+      button?.removeAttribute("disabled");
+    }
+  }
+});
+
 connection.on("AddToQueue", (turno: Turno) => {
   console.log(turno);
   if ($pTurno && $tiempoEspera) {
